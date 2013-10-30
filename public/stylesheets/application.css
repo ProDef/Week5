@@ -9,4 +9,14 @@ div.box, div.cell {
 	
 }
 
+#sudoku {
+	font-size: 0;
+	text-align: center;
+}
+
+body {
+	text-align: center;
+	font-family: Arial;
+}
+
 
