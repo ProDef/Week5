@@ -23,6 +23,11 @@ get '/' do
 	erb :index
 end
 
+get '/solution' do 
+	@current_solution = session[:solution]
+	erb :index
+end
+
 get '/last-visit' do
   # get the last visited time from the session
   "Previous visit to homepage: #{session[:last_visit]}"
