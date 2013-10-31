@@ -2,14 +2,7 @@ require 'sinatra'
 require_relative './lib/sudoku'
 require_relative './lib/cell'
 
-# get '/' do 
-# 	erb :index
-# end
-
-get '/' do
-  @current_solution = random_sudoku
-  erb :index
-end
+enable :sessions # sessions are disabled by default 
 
 def random_sudoku
 	seed = (1..9).to_a.shuffle + Array.new(81-9, 0)
@@ -17,6 +10,27 @@ def random_sudoku
 	sudoku.solve!
 	sudoku.to_s.chars
 end
+
+def puzzle(sudoku)
+	# sudoku_copy = sudoku.dup
+	# insert_number_blanks_in sudoku_copy, 40
+end
+
+get '/' do
+	sudoku = random_sudoku
+	session[:solution] = sudoku
+  	@current_solution = random_sudoku
+	erb :index
+end
+
+get '/last-visit' do
+  # get the last visited time from the session
+  "Previous visit to homepage: #{session[:last_visit]}"
+end
+
+
+
+
 
 
 
